@@ -6,10 +6,9 @@ import java.util.Set;
 
 public class BloomFilter {
 
-    private Set<String> data;
+    private final Set<String> data = new HashSet<>();
 
     public BloomFilter(Collection<String> set) {
-        data = new HashSet<>();
         for (String s : set) {
             data.add(s);
         }
