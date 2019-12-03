@@ -2,7 +2,7 @@
 
 ## Collaborators
 Roger Kreienbühl (@rkreienbuehl)  
-Florian Thiévent (@lichtwellenreiter)
+Florian Thiévent (@lichtwellenreiter)  
 Stefan Gruber (@zone39) 
 
 ## How to use
