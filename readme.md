@@ -2,7 +2,8 @@
 
 ## Collaborators
 Roger Kreienbühl (@rkreienbuehl)  
-Florian Thiévent (@lichtwellenreiter)
+Florian Thiévent (@lichtwellenreiter)  
+Stefan Gruber (@zone39) 
 
 ## How to use
 Start the application with a path to the file which contains the words. This is usually a .txt file. If there is no 
