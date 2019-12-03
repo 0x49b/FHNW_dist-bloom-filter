@@ -1,31 +1,46 @@
 package ch.fhnw.edu.dist;
 
 import ch.fhnw.edu.dist.reader.Reader;
+import org.apache.commons.cli.*;
 
 public class BloomFilterStarter {
 
     public static void main(String[] args) {
 
-        if (args.length < 2) {
-            System.out.println("Please specify the argument for the Path to Wordlist");
-            System.out.println("How to call: ");
-            System.out.println("   java -jar -f <path/to/wordlist>");
-            System.exit(0);
-        } else if (args.length > 2) {
-            System.out.println("Please specify the correct amount of arguments");
-            System.out.println("How to call: ");
-            System.out.println("   java -jar -f <path/to/wordlist>");
-            System.exit(0);
-        } else if (args[0].equals("-f")) {
-            System.out.println("Path is present " + args[1]);
 
-            Reader reader = new Reader(args[1]);
-            reader.readWords();
-            reader.printWordList();
+        Options options = new Options();
+        options.addOption("p", "probability", true, "Sets the probability"); // double
+        options.addOption("w", "wordlist", true, "Path to a wordlist as .txt"); //String
+        options.addOption("t", "testwordlist", true, "a wordlist to test the filter"); // String
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd;
+
+        try {
+            cmd = parser.parse(options, args);
+        } catch (ParseException e) {
+            return;
+        }
+
+
+        // Parsing Arguments
+        if (cmd.hasOption("p") && cmd.hasOption("w") && cmd.hasOption("t")) {
+            Double probability = Double.parseDouble(cmd.getOptionValue("p"));
+            String wordlistpath = cmd.getOptionValue("w");
+            String testwordlist = cmd.getOptionValue("t");
+
+            Reader wReader = new Reader(wordlistpath);
+            wReader.readWords();
+
+            BloomFilter bloomFilter = new BloomFilter( wReader.getWordList(), probability  );
+
+
 
         } else {
-            System.out.println("An error occured. please try again");
+            System.exit(0);
+            // print help
         }
+
 
     }
 }
