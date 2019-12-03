@@ -1,13 +1,22 @@
-\documentclass[a4paper,10pt]{scrreprt}
+%\documentclass[a4paper,10pt]{scrreprt}
+
+\documentclass[12pt,a4paper]{report}
+\usepackage{graphicx}
+
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[german]{babel}
 \usepackage{pdfpages}
 %opening
-\title{ Bloom Filter Implementierung \\ @Diskrete Stochastik}
+%\title{ Bloom Filter Implementierung \\ @Diskrete Stochastik}
+%\author{Florian Thiévent, Roger Kreienbühl, Stefan Gruber}
 
-\author{Florian Thiévent, Roger Kreienbühl}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+%\setmainfont{TeX}
+\setmonofont{Courier New}
+
 \usepackage{fancyhdr}
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\pic}[2][figure]{\begin{figure}[h]
@@ -17,6 +26,16 @@
  \caption{#1}
 \end{figure}
 }
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
 \usepackage{framed}
 % Code listenings
 \usepackage{color}
@@ -31,7 +50,7 @@
  basicstyle=\footnotesize\ttfamily, % Standardschrift
  numbers=left,               % Ort der Zeilennummern
  numberstyle=\tiny,          % Stil der Zeilennummern
- stepnumber=5,              % Abstand zwischen den Zeilennummern
+ stepnumber=1,               % Abstand zwischen den Zeilennummern
  numbersep=5pt,              % Abstand der Nummern zum Text
  tabsize=2,                  % Groesse von Tabs
  extendedchars=true,         %
@@ -53,11 +72,51 @@
 }
 
 \begin{document}
+\begin{titlepage}
+	\centering
+	%\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+	\qquad
+	\par\vspace{1cm}
+	{\scshape\LARGE Fachhochschule Nordwestschweiz \par}
+	{\scshape\Large Diskrete Stochastik, HS19\par}
+	\vspace{5cm}
+	{\huge\bfseries Bloom Filter\par}
+	{\scshape\Large Bonusaufgabe\par}
+	\vspace{2cm}
+	{\Large\itshape  Stefan Gruber \\ Roger Kreienbühl \\ Florian Thiévent \par}
+	\vfill
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
 
-\maketitle
 \tableofcontents
 \newpage
- \pagestyle{fancy}
-\part{Theorie}
-\chapter{Allgemeines}
+
+\chapter{Idee des BloomFilters}\label{ch:idee-des-bloomfilters}
+\section{Vorteile}\label{sec:vorteile}
+\section{Nachteile}\label{sec:nachteile}
+\begin{lstlisting}
+// Hello.java
+import javax.swing.JApplet;
+import java.awt.Graphics;
+
+public class Hello extends JApplet {
+    public void paintComponent(Graphics g) {
+        g.drawString("Hello, world!", 65, 95);
+    }    
+}
+\end{lstlisting}
+
+\chapter{Beispiel aus der Praxis}\label{ch:beispiel-aus-der-praxis}
+\section{Google Chrome}\label{sec:google-chrome}
+Der weitverbreitete Browser Google Chrome benutzt Bloom Filter in seiner Malicious URL implementierung. Dabei werde URL's die von Usern eingegeben werden durch die Browser Engine geprüft und bei einem positiven Match der User mittels einer Meldung darauf aufmerksam gemacht.
+\includegraphics{assets/google_malware.png}
+
+\chapter{Testergebnisse der Implementierung}\label{ch:testergebnisse-der-implementierung}
+\section{Verfahren}\label{sec:verfahren}
+\section{Resultate}\label{sec:resultate}
+\includegraphics[width=\textwidth]{assets/results.jpg}
+
+
+
 \end{document}
