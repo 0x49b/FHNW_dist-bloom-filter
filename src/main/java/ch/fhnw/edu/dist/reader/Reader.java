@@ -61,4 +61,8 @@ public class Reader {
     public List<String> getWordList() {
         return wordList;
     }
+
+    public int getSize(){
+        return this.wordList.size();
+    }
 }

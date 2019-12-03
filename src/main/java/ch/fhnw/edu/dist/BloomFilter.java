@@ -20,10 +20,11 @@ public class BloomFilter {
 
     /**
      * Construtor of class BloomFilter
-     * @param set Collection with all Strings to add at first
+     *
+     * @param set         Collection with all Strings to add at first
      * @param probability Probability of false positive
      */
-    public BloomFilter(Collection<String> set, int probability) {
+    public BloomFilter(Collection<String> set, double probability) {
         this.probability = probability;
         this.nOfItems = set.size();
         nOfBits = calculateNumbersOfBits();
@@ -42,14 +43,16 @@ public class BloomFilter {
 
     /**
      * Method to calculate the number of bits
+     *
      * @return Number of bits as int
      */
     private int calculateNumbersOfBits() {
-        return (int) ((nOfItems * Math.log(probability)) / (1 / Math.pow(2, Math.log(2))));
+        return (int) ((nOfItems * Math.log(probability)) / Math.log(1 / Math.pow(2, Math.log(2))));
     }
 
     /**
      * Method to calculate the number of HashFunctions
+     *
      * @return Number of HashFunctions as int
      */
     private int calculateNumberOfHashFunctions() {
@@ -58,18 +61,20 @@ public class BloomFilter {
 
     /**
      * Method to add a new String to the BloomFilter
+     *
      * @param s String to add to the BloomFilter
      */
     public void addString(String s) {
         for (HashFunction hashFunction : hf) {
             HashCode hc = hashFunction.newHasher().putString(s, Charsets.UTF_8).hash();
-            int bit = hc.asInt() % nOfBits;
+            int bit = Math.abs( hc.asInt() % nOfBits);
             this.bits[bit] = true;
         }
     }
 
     /**
      * Method to check if a string in the data structure. false positive is possible
+     *
      * @param s String to check for
      * @return boolean value if string is inside the data structure
      */
@@ -78,7 +83,7 @@ public class BloomFilter {
 
         for (HashFunction hashFunction : hf) {
             HashCode hc = hashFunction.newHasher().putString(s, Charsets.UTF_8).hash();
-            int bit = hc.asInt() % nOfBits;
+            int bit = Math.abs(hc.asInt() % nOfBits);
             check = check && this.bits[bit];
 
             if (!check) {
