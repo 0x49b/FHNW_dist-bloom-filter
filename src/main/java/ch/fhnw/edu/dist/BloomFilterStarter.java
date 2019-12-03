@@ -2,7 +2,7 @@ package ch.fhnw.edu.dist;
 
 import ch.fhnw.edu.dist.reader.Reader;
 
-public class BloomFilter {
+public class BloomFilterStarter {
 
     public static void main(String[] args) {
 
