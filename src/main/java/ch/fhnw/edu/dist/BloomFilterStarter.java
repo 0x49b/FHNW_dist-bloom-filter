@@ -1,12 +1,15 @@
 package ch.fhnw.edu.dist;
 
 import ch.fhnw.edu.dist.reader.Reader;
+import com.google.common.base.Strings;
 import org.apache.commons.cli.*;
 
-import javax.management.AttributeList;
 import java.util.List;
 
 public class BloomFilterStarter {
+    
+    static final int LENGTHOF = 55;
+    static final char WCHAR = ' ';
 
     public static void main(String[] args) {
 
@@ -28,7 +31,7 @@ public class BloomFilterStarter {
 
         // Parsing Arguments
         if (cmd.hasOption("p") && cmd.hasOption("w") && cmd.hasOption("t")) {
-            Double probability = Double.parseDouble(cmd.getOptionValue("p"));
+            double probability = Double.parseDouble(cmd.getOptionValue("p"));
             String wordlistpath = cmd.getOptionValue("w");
             String testwordlist = cmd.getOptionValue("t");
 
@@ -59,16 +62,32 @@ public class BloomFilterStarter {
                 }
             }
 
-            double percentageRight = (right/ (double) inListDetected);
-            double percentageWrong = (wrong/ (double) inListDetected);
+            double percentageRight = (right / (double) inListDetected);
+            double percentageWrong = (wrong / (double) inListDetected);
 
-            System.out.println("right positive: " + right);
-            System.out.println("false positive: " + wrong);
-            System.out.println("in list detected: " + inListDetected);
-            System.out.println("anz tw: " + tReader.getSize());
-            System.out.println("porp: " + probability);
-            System.out.println("perc OK (right positive): " + percentageRight);
-            System.out.println("perc NOK (false positive): "  + percentageWrong);
+
+            String rightPositive = String.format("Right positive: %s ", right);
+            String falsePositive = String.format("False positive: %s ", wrong);
+            String inList = String.format("In list detected: %s ", inListDetected);
+            String sizeOfTestWords = String.format("Size of TestwordsList: %s ", tReader.getSize());
+            String prob = String.format("Probability: %s ", probability);
+            String percRight = String.format("Percent OK (right positive): %s %% ", percentageRight);
+            String percWrong = String.format("Percent NOK (false positive): %s %% ", percentageWrong);
+
+
+            System.out.println("+---------------------------------------------------------------+");
+            System.out.println("|                    Testresults BloomFilter                    |");
+            System.out.println("|                        implemented by                         |");
+            System.out.println("|        Stefan Gruber, Roger Kreienbühl, Florian Thiévent      |");
+            System.out.println("+---------------------------------------------------------------+");
+            System.out.println("|        " + Strings.padEnd(rightPositive, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(falsePositive, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(inList, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(sizeOfTestWords, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(prob, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(percRight, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(percWrong, LENGTHOF, WCHAR) + "|");
+            System.out.println("+---------------------------------------------------------------+");
 
 
         } else {

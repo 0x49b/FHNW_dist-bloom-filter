@@ -94,36 +94,48 @@
 
 \chapter{Idee des BloomFilters}\label{ch:idee-des-bloomfilters}
 \section{Vorteile}\label{sec:vorteile}
+Der Vorteil beim Einsatz eines Bloom Filters besteht darin, dass schnell und effizient geprüft werden kann ob ein bestimmter Wert vorhanden ist. Man kann also zum Beispiel eine Menge n an Wörtern im Filter speichern und schnell prüfen ob bei einer Eingabe das eingegebene Wort dem Filter entspricht. Nebst einer schnellen Abfrage ist auch der geringe Speicherplatz welcher ein Bloom Filter belegt einer der Vorteile.
 \section{Nachteile}\label{sec:nachteile}
-\begin{lstlisting}
-// Hello.java
-import javax.swing.JApplet;
-import java.awt.Graphics;
-
-public class Hello extends JApplet {
-    public void paintComponent(Graphics g) {
-        g.drawString("Hello, world!", 65, 95);
-    }    
-}
-\end{lstlisting}
+Der grösste Nachteil beim Einsatz eines Bloom Filters sind die sogenannten false positive Matches. Es kann also nie ganz eindeutig bestimmt werden ob ein Wort im Filter enthalten ist.
 
 \chapter{Beispiel aus der Praxis}\label{ch:beispiel-aus-der-praxis}
 \section{Google Chrome}\label{sec:google-chrome}
-Der weitverbreitete Browser Google Chrome benutzt Bloom Filter in seiner Malicious URL Implementierung. Dabei werde URL's die von Usern eingegeben werden durch die Browser Engine geprüft und bei einem positiven Match der User mittels einer Meldung darauf aufmerksam gemacht.
+Der weitverbreitete Browser Google Chrome benutzt Bloom Filter in seiner Malicious URL Implementierung. Dabei werden URL's die von Usern eingegeben werden durch die Browser Engine geprüft und bei einem positiven Match der User mittels einer Meldung darauf aufmerksam gemacht.
 
     \begin{figure}[h!]
     \includegraphics[width=\textwidth]{assets/google_malware.png}
     \caption{Google Chrome Malware Hinweis}
-      \label{fig:boat1}
+      \label{fig:google-chrome-malware}
     \end{figure}
     
-Die Verwendung eines Bloom Filters bietet sich hier an, das der verwendete Speicherplatz sehr klein ist und die Kommunikation zur Malicious URL API von Google sich damit einen enorm kleinen Footprint hat. Das bedeutet, dass die Abgleiche auch bei einer langsamen Internetverbindung performant durchgeführt werden können.
+Die Verwendung eines Bloom Filters bietet sich hier an, da der verwendete Speicherplatz sehr klein gehalten werden kann und die Kommunikation zur Malicious URL API von Google damit einen enorm kleinen Footprint hat. Das bedeutet, dass die Abgleiche auch bei einer langsamen Internetverbindung performant durchgeführt werden können und die User Experience nicht merklich beinträchtigen.
+
+%\begin{lstlisting}
+%// Hello.java
+%import javax.swing.JApplet;
+%import java.awt.Graphics;
+%
+%public class Hello extends JApplet {
+%    public void paintComponent(Graphics g) {
+%        g.drawString("Hello, world!", 65, 95);
+%    }    
+%}
+%\end{lstlisting}
 
 
 \chapter{Testergebnisse der Implementierung}\label{ch:testergebnisse-der-implementierung}
 \section{Verfahren}\label{sec:verfahren}
+Um den BloomFilter zu testen wurde eine zweite Wortliste angelegt. Dabei wurde darauf geachtet, dass sich die beiden Wortlisten, also jene zum Training und jene zur Prüfung sich unterscheiden. Mit einer vorgegebenen Wahrscheinlichkeit kann so der Filter relativ leicht geprüft werden.
 \section{Resultate}\label{sec:resultate}
-\includegraphics[width=\textwidth]{assets/results.jpg}
+Anbei die Testresultate mit dem oben genannten Verfahren:
+\par\vspace{0.5cm}
+
+ \begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{assets/testresults.png}
+  \caption{Testresultate der Implementierung}
+  \label{fig:testresults-of-implementation}
+\end{figure}
 
 
 
