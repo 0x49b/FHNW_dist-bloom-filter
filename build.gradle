@@ -17,3 +17,14 @@ dependencies {
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'BloomFilterStarter',
+                'Implementation-Version': version,
+                'Class-Path': configurations.compile.collect{it.toURI().toString()}.join(' '),
+                'Main-Class': 'ch.fhnw.edu.dist.BloomFilterStarter'
+        )
+    }
+}
+
