@@ -66,6 +66,8 @@ public class BloomFilterStarter {
             double percentageWrong = (wrong / (double) inListDetected);
 
 
+            String numberOfBits = String.format("Number of bits: %s", bloomFilter.getnOfBits());
+            String numberOfHash = String.format("Number of hash functions: %s", bloomFilter.getnOfHash());
             String rightPositive = String.format("Right positive: %s ", right);
             String falsePositive = String.format("False positive: %s ", wrong);
             String inList = String.format("In list detected: %s ", inListDetected);
@@ -80,6 +82,8 @@ public class BloomFilterStarter {
             System.out.println("|                        implemented by                         |");
             System.out.println("|        Stefan Gruber, Roger Kreienbühl, Florian Thiévent      |");
             System.out.println("+---------------------------------------------------------------+");
+            System.out.println("|        " + Strings.padEnd(numberOfBits, LENGTHOF, WCHAR) + "|");
+            System.out.println("|        " + Strings.padEnd(numberOfHash, LENGTHOF, WCHAR) + "|");
             System.out.println("|        " + Strings.padEnd(rightPositive, LENGTHOF, WCHAR) + "|");
             System.out.println("|        " + Strings.padEnd(falsePositive, LENGTHOF, WCHAR) + "|");
             System.out.println("|        " + Strings.padEnd(inList, LENGTHOF, WCHAR) + "|");
