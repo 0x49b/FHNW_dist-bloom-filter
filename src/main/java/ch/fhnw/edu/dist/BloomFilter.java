@@ -16,6 +16,7 @@ public class BloomFilter {
     private HashFunction[] hf;
     private int nOfItems;
     private int nOfBits;
+    private int nOfHash;
     private double probability;
 
     /**
@@ -30,9 +31,9 @@ public class BloomFilter {
         nOfBits = calculateNumbersOfBits();
         bits = new boolean[nOfBits];
 
-        int numbersOfHash = calculateNumberOfHashFunctions();
-        hf = new HashFunction[numbersOfHash];
-        for (int i = 0; i < numbersOfHash; i++) {
+        nOfHash = calculateNumberOfHashFunctions();
+        hf = new HashFunction[nOfHash];
+        for (int i = 0; i < nOfHash; i++) {
             hf[i] = Hashing.murmur3_128((int) Math.random());
         }
 
@@ -92,5 +93,21 @@ public class BloomFilter {
         }
 
         return check;
+    }
+
+    /**
+     * Getter method for nOfBits
+     * @return Number of bits as integer
+     */
+    public int getnOfBits() {
+        return nOfBits;
+    }
+
+    /**
+     * Getter method for nOfHash
+     * @return Number of hash functions as integer
+     */
+    public int getnOfHash() {
+        return nOfHash;
     }
 }
