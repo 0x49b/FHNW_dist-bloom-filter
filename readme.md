@@ -6,9 +6,16 @@ Florian Thiévent (@lichtwellenreiter)
 Stefan Gruber (@zone39) 
 
 ## How to use
-Start the application with a path to the file which contains the words. This is usually a .txt file. If there is no 
-file present, the code doesn't get executed.
+Start the application with three arguments:
 
-```java -jar BloomFilter.jar -f <path/to/file>```
+```-p``` Double value for probability of false positive
 
-if the call has more than the -f argument, the execution is aborted.
+```-w``` file with words which are added to the BloomFilter
+
+```-t``` file with words to test the Bloomfilter
+
+The files have to be in .txt format. Execution command:
+
+```java -jar fhnw-dist-bloom-filter-1.0-SNAPSHOT.jar -p <probability as double> -w <path/to/wordfile> -t <path/to/testwordfile>```
+
+All three arguments ```-p```, ```-w``` and ```-t``` are needed.
